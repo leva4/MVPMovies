@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BaseNavigationController.swift
 //  MVPMovies
 //
 //  Created by Kresimir Levarda on 24.01.2022..
@@ -7,13 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class BaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
-
