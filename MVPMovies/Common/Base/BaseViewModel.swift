@@ -5,6 +5,8 @@
 //  Created by Kresimir Levarda on 24.01.2022..
 //
 
-import Foundation
+import RxSwift
 
-class BaseViewModel {}
+class BaseViewModel {    
+    let errorSubject = PublishSubject<Error>()
+}

@@ -20,8 +20,19 @@ final class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.backgroundColor = .lightGray.withAlphaComponent(0.1)        
+        setupTabBar()
         self.delegate = self
+    }
+    
+    func setupTabBar() {        
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .lightGray.withAlphaComponent(0.4)
+        
+        tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = appearance
+        
+        tabBar.unselectedItemTintColor = .darkGray
+        tabBar.tintColor = .systemBackground
     }
 }
 

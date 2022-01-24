@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="MVPMovies" customModuleProvider="target">
             <connections>
-                <outlet property="searchTextField" destination="lco-uy-y2N" id="HSm-FF-JzR"/>
+                <outlet property="searchTextField" destination="lco-uy-y2N" id="Dq5-r7-ZkD"/>
                 <outlet property="tableView" destination="mGi-eX-y9L" id="qhy-lh-YJN"/>
                 <outlet property="view" destination="iN0-l3-epB" id="5kD-0a-GDM"/>
             </connections>

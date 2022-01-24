@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window =  newWindow
         appCoordinator = AppCoordinator(window: newWindow)
         appCoordinator.startApp()
-
+        ApiConfigurationService.shared.configure()
         return true
     }
 }

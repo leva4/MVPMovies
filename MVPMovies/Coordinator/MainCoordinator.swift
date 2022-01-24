@@ -8,23 +8,30 @@
 import UIKit
 import RxSwift
 
-class MainCoordinator {
-    
+class MainCoordinator: MainCoordinatorProtocol {
     private var mainTabBarController: MainTabBarController?
     
     func start(in window: UIWindow) {
         mainTabBarController = MainTabBarController()
-        let homeViewController = FavoritesViewController(viewModel: FavoritesViewModel())
+        let homeViewController = FavoritesViewController(viewModel: FavoritesViewModel(coordinator: self))
         homeViewController.tabBarItem = createTabBarItem(for: .favorites)
-        let searchViewController = SearchViewController(viewModel: SearchViewModel())
+        let searchViewController = SearchViewController(viewModel: SearchViewModel(coordinator: self))
         searchViewController.tabBarItem = createTabBarItem(for: .search)
         
         mainTabBarController?.viewControllers = [
-            homeViewController,
-            searchViewController
+            BaseNavigationController(rootViewController: homeViewController),
+            BaseNavigationController(rootViewController: searchViewController)
         ]
  
         window.rootViewController = mainTabBarController
+    }
+}
+
+extension MainCoordinator {
+    func presentMediaDetails(for media: Media) {
+        let mediaDetailsViewController = MediaDetailsViewController(viewModel: MediaDetailsViewModel(media))
+        let mediaDetailsNavigationController = BaseNavigationController(rootViewController: mediaDetailsViewController)
+        mainTabBarController?.present(mediaDetailsNavigationController, animated: true, completion: nil)
     }
 }
 
