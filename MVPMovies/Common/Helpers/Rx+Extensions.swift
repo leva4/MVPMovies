@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxCocoa
+import Foundation
 
 extension ObservableType {
     /**
@@ -26,5 +27,17 @@ extension ObservableType {
 extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy {
     func unwrap<T>() -> Driver<T> where Element == T? {
         return self.filter { $0 != nil }.map { $0! }
+    }
+}
+
+extension Reactive where Base: NSObject {
+    func observeStorage<Element: Decodable>(_ type: Element.Type, _ keyPath: String) -> Observable<Element?> {
+        return self.observe(Data.self, keyPath)
+            .debounce(.microseconds(100), scheduler: MainScheduler.asyncInstance)
+            .unwrap()
+            .map { data in
+                let value = try? JSONDecoder().decode(Element.self, from: data)
+                return value
+            }
     }
 }

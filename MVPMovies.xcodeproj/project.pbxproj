@@ -83,6 +83,8 @@
 		C8E2975F27A0461A00BFD21F /* Media1.json in Resources */ = {isa = PBXBuildFile; fileRef = C8E2975527A042FD00BFD21F /* Media1.json */; };
 		C8E2976027A0461C00BFD21F /* Media2.json in Resources */ = {isa = PBXBuildFile; fileRef = C8E2975727A042FD00BFD21F /* Media2.json */; };
 		C8E2976127A0461F00BFD21F /* Media3.json in Resources */ = {isa = PBXBuildFile; fileRef = C8E2975827A042FE00BFD21F /* Media3.json */; };
+		C8F6123027A18E2E00413BFE /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F6122F27A18E2E00413BFE /* LocalStorageService.swift */; };
+		C8F6123227A18F2E00413BFE /* LocalStorageServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F6123127A18F2E00413BFE /* LocalStorageServiceMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +172,8 @@
 		C8E2975627A042FD00BFD21F /* Decodable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		C8E2975727A042FD00BFD21F /* Media2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Media2.json; sourceTree = "<group>"; };
 		C8E2975827A042FE00BFD21F /* Media3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Media3.json; sourceTree = "<group>"; };
+		C8F6122F27A18E2E00413BFE /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
+		C8F6123127A18F2E00413BFE /* LocalStorageServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageServiceMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +400,7 @@
 			children = (
 				C8A91FCC279EDC6E0054168A /* Storage.swift */,
 				C8A91FCA279EDC5E0054168A /* LocalStorage.swift */,
+				C8F6122F27A18E2E00413BFE /* LocalStorageService.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -469,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				C8E2974F27A042F600BFD21F /* FavoritesServiceMock.swift */,
+				C8F6123127A18F2E00413BFE /* LocalStorageServiceMock.swift */,
 				C8E2975027A042F600BFD21F /* MainCoordinatorMock.swift */,
 				C8E2975127A042F600BFD21F /* MediaAvoidanceServiceMock.swift */,
 				C8E2975E27A0430F00BFD21F /* Models */,
@@ -686,6 +692,7 @@
 				C8E2972D27A0018A00BFD21F /* BaseTableViewCell.swift in Sources */,
 				C8E2973327A003E500BFD21F /* MediaDetailsViewController.swift in Sources */,
 				C8A91F88279E9F660054168A /* SearchViewController.swift in Sources */,
+				C8F6123027A18E2E00413BFE /* LocalStorageService.swift in Sources */,
 				C8E2974727A0362400BFD21F /* ApiConfigurationService.swift in Sources */,
 				C8A91FBB279ED47C0054168A /* RxURLSessionError.swift in Sources */,
 				C8A91FCB279EDC5E0054168A /* LocalStorage.swift in Sources */,
@@ -714,6 +721,7 @@
 				C8E2975427A042F600BFD21F /* MediaAvoidanceServiceMock.swift in Sources */,
 				C8E2975A27A042FE00BFD21F /* Decodable+Extensions.swift in Sources */,
 				C8E2975227A042F600BFD21F /* FavoritesServiceMock.swift in Sources */,
+				C8F6123227A18F2E00413BFE /* LocalStorageServiceMock.swift in Sources */,
 				C8E2974E27A042EE00BFD21F /* FavoritesViewModelTests.swift in Sources */,
 				C8E2975327A042F600BFD21F /* MainCoordinatorMock.swift in Sources */,
 			);

@@ -12,6 +12,7 @@ import Foundation
 final class FavoritesViewModel: BaseViewModel, FavoritesViewModelProtocol {
     private let mediaAvoidanceService: MediaAvoidanceServiceProtocol
     private let favoritesService: FavoritesServiceProtocol
+    private let localStorageService: LocalStorageServiceProtocol
     private let backgroundQueue: SchedulerType
     private let coordinator: MainCoordinatorProtocol
     
@@ -19,22 +20,20 @@ final class FavoritesViewModel: BaseViewModel, FavoritesViewModelProtocol {
         coordinator: MainCoordinatorProtocol,
         mediaAvoidanceService: MediaAvoidanceServiceProtocol = MediaAvoidanceService(),
         favoritesService: FavoritesServiceProtocol = FavoritesService(),
+        localStorageService: LocalStorageServiceProtocol = LocalStorageService(),
         backgroundQueue: SchedulerType = SerialDispatchQueueScheduler(qos: .background)) {
             self.coordinator = coordinator
             self.mediaAvoidanceService = mediaAvoidanceService
             self.favoritesService = favoritesService
+            self.localStorageService = localStorageService
             self.backgroundQueue = backgroundQueue
             super.init()
         }
     
     func configure() -> Output {
         let storageDidChange = Observable.merge(
-            UserDefaults.standard.rx
-                .observeStorage(Set<Media>.self, "favorite_media")
-                .mapToVoid(),
-            UserDefaults.standard.rx
-                .observeStorage(Set<Int>.self, "media_ids_to_avoid")
-                .mapToVoid()
+            localStorageService.observeChanges(Set<Media>.self, "favorite_media"),
+            localStorageService.observeChanges(Set<Int>.self, "media_ids_to_avoid")
         )
         
         let favoriteMedia: Driver<[Media]> =  storageDidChange
@@ -47,6 +46,7 @@ final class FavoritesViewModel: BaseViewModel, FavoritesViewModelProtocol {
             .map({ media -> [Media] in
                 return media.sorted(by: Media.sort())
             })
+            .distinctUntilChanged()
             .asDriver(onErrorJustReturn: [])
         
         return .init(favoriteMedia: favoriteMedia)

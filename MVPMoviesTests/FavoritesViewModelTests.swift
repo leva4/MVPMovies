@@ -17,6 +17,7 @@ class FavoritesViewModelTests: XCTestCase {
     var coordinator: MainCoordinatorMock!
     var mediaAvoidanceService: MediaAvoidanceServiceProtocol!
     var favoritesService: FavoritesServiceProtocol!
+    var localStorageService: LocalStorageServiceMock!
     var disposeBag: DisposeBag!
 
     override func setUp() {
@@ -26,10 +27,12 @@ class FavoritesViewModelTests: XCTestCase {
         coordinator = MainCoordinatorMock()
         mediaAvoidanceService = MediaAvoidanceServiceMock()
         favoritesService = FavoritesServiceMock()
+        localStorageService = LocalStorageServiceMock()
         sut = FavoritesViewModel(
             coordinator: coordinator,
             mediaAvoidanceService: mediaAvoidanceService,
             favoritesService: favoritesService,
+            localStorageService: localStorageService,
             backgroundQueue: scheduler
         )
         disposeBag = DisposeBag()
@@ -122,8 +125,9 @@ class FavoritesViewModelTests: XCTestCase {
                 .disposed(by: disposeBag)
         })
         scheduler.advanceTo(10)
-
+        
         favoritesService.addToFavorites(mockedMovie2)
+        localStorageService.mockRefreshStorage.onNext(())
 
         XCTAssertEqual(observer.events, expectedResults)
     }
